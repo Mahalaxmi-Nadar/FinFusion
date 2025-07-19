@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Most Traded Assets{% endblock %}
+
+{% block content %}
+<h2>🔥 Most Traded Assets</h2>
+<p>Based on real-time data, here are today's most actively traded assets.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Asset</th>
+            <th>Type</th>
+            <th>Volume</th>
+            <th>24h Change</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>BTC-USD</td>
+            <td>Crypto</td>
+            <td>$38B</td>
+            <td>+2.4%</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>NIFTY 50</td>
+            <td>Stock</td>
+            <td>₹85,000 Cr</td>
+            <td>-0.5%</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>ETH-USD</td>
+            <td>Crypto</td>
+            <td>$18B</td>
+            <td>+3.1%</td>
+        </tr>
+    </tbody>
+</table>
+
+<p style="margin-top: 2rem;">✅ Live volume tracking with CoinGecko and Yahoo Finance will be added soon.</p>
+{% endblock %}
+{% extends "base.html" %}
+{% block title %}Most Traded{% endblock %}
+{% block content %}
+<h2>🔥 Trending Crypto</h2>
+<ul id="trending-list"></ul>
+<script>
+fetch('/trending-api').then(r=>r.json()).then(data=>{
+  data.coins.forEach((c,i)=>{
+    document.getElementById('trending-list').innerHTML += 
+      `<li>${i+1}. ${c.item.name} (${c.item.symbol.toUpperCase()})</li>`;
+  });
+});
+</script>
+{% endblock %}
+

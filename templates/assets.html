@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Assets{% endblock %}
+
+{% block content %}
+<h2>💼 Asset Center</h2>
+
+<!-- Right-aligned navigation links -->
+<div class="asset-links">
+  <a href="/assets/overview">📊 Overview</a>
+  <a href="/assets/spot">💹 Spot</a>
+  <a href="/assets/earn">🪙 Earn</a>
+</div>
+
+<p style="margin-top: 60px;">Choose a section above to explore your asset management options.</p>
+
+<style>
+.asset-links {
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.asset-links a {
+  text-decoration: none;
+  margin-left: 20px;
+  padding: 8px 16px;
+  background: #2a2a2a;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover effect */
+.asset-links a:hover {
+  background: #3b3b3b;
+  transform: scale(1.07);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* Bump (click) animation */
+.asset-links a:active {
+  animation: bump 0.2s ease-in-out;
+}
+
+@keyframes bump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>💡 Investment Dashboard</h2>
+
+<!-- 🎨 Side-by-side bouncing images -->
+<div class="image-container">
+  <img src="https://cdn.dribbble.com/userupload/4460987/file/original-e1738aa3596dd6dd4cd54d55005494ed.png?resize=1024x768&vertical=center"
+       class="bounce-left" height="300" width="500">
+  <img src="https://cdn.dribbble.com/userupload/18206400/file/original-a431505b279f831b078ca75c6c828f50.png?resize=1024x768&vertical=center"
+       class="bounce-right" height="300" width="500">
+</div>
+
+<!-- 🎨 CSS for bounce animation -->
+<style>
+.image-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;  /* Keeps them side-by-side on desktop */
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+/* Bump / bounce-left animation */
+.bounce-left {
+  animation: bounceInLeft 1s ease;
+}
+
+/* Bump / bounce-right animation */
+.bounce-right {
+  animation: bounceInRight 1s ease;
+}
+
+@keyframes bounceInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-200px) scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(20px) scale(1.05);
+  }
+  80% {
+    transform: translateX(-10px) scale(1);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes bounceInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(200px) scale(0.8);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-20px) scale(1.05);
+  }
+  80% {
+    transform: translateX(10px) scale(1);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+</style>
+
+
+
+<form method="post">
+  {% for f in fields %}
+    <label>{{ f }}: <input name="{{ f }}" type="text" required></label><br>
+  {% endfor %}
+  <button type="submit">Get Recommendation</button>
+</form>
+
+{% if result %}
+  <div>
+    <h3>📊 AI Recommendation Results</h3>
+    <ul>
+      {% for k, v in result.items() %}
+        <li><strong>{{ k }}:</strong> {{ v }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div style="margin-top: 30px;">
+    <h3>📈 Confidence Breakdown (Pie Charts)</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+      {% for label, probs in probas.items() %}
+        <div style="flex: 1 1 300px; text-align: center;">
+          <h4>{{ label }}</h4>
+          <canvas id="chart_{{ label }}" width="300" height="300"></canvas>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if probas["Risk_Level"] %}
+    <div style="margin-top: 50px;">
+      <h3>📉 Risk Level Line Chart</h3>
+      <canvas id="riskLineChart" width="400" height="400"></canvas>
+    </div>
+  {% endif %}
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const probas = {{ probas | tojson }};
+    const classes = {{ classes | tojson }};
+
+    for (const label in probas) {
+      const ctx = document.getElementById("chart_" + label).getContext("2d");
+      new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: classes[label],
+          datasets: [{
+            label: label + " Confidence",
+            data: probas[label],
+            backgroundColor: [
+              "#FF6384", "#36A2EB", "#FFCE56", "#9CCC65", "#FFA726", "#AB47BC"
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: false,
+          plugins: {
+            legend: { position: 'bottom' },
+            title: {
+              display: true,
+              text: label + ' Confidence %'
+            }
+          }
+        }
+      });
+    }
+
+    // Risk Level Line Chart
+    const riskCtx = document.getElementById("riskLineChart")?.getContext("2d");
+    if (riskCtx) {
+      new Chart(riskCtx, {
+        type: "line",
+        data: {
+          labels: classes["Risk_Level"],
+          datasets: [{
+            label: "Risk Level Confidence %",
+            data: probas["Risk_Level"],
+            fill: false,
+            borderColor: "#FF6384",
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: false,
+          plugins: {
+            legend: { display: true },
+            title: {
+              display: true,
+              text: "AI Confidence by Risk Level"
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                callback: function (value) {
+                  return value + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+  </script>
+{% endif %}
+{% endblock %}

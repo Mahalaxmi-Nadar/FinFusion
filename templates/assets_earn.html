@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Earn Dashboard{% endblock %}
+
+{% block content %}
+<h2>🪙 Earn Dashboard</h2><br>
+
+
+<div class="earn-grid">
+  <div class="earn-card">
+    <h3>📈 Staked BTC</h3>
+    <p>0.05 BTC earning 4.5% APY</p>
+  </div>
+  <div class="earn-card">
+    <h3>🧾 Fixed Deposit (INR)</h3>
+    <p>₹25,000 earning 6.8% annual interest</p>
+  </div>
+</div><br>
+<img src="https://cdn.dribbble.com/userupload/14330947/file/original-59a8f6adbe60e434fb6e320a389d4a60.jpg" class="centered-img" width="500">
+
+<style>
+.earn-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.earn-card {
+  flex: 1;
+  min-width: 250px;
+  padding: 15px;
+  background: #f2fbf5;
+  border: 1px solid #b2dfdb;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.earn-card h3 {
+  margin-bottom: 6px;
+}
+</style>
+{% endblock %}

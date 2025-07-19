@@ -1,0 +1,143 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BTC Investment Prediction</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 5px;
+      font-weight: bold;
+    }
+
+    input {
+      padding: 6px;
+      width: 220px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    pre {
+      margin-top: 20px;
+      text-align: left;
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      display: inline-block;
+      max-width: 600px;
+    }
+  </style>
+
+  <script>
+    async function autoFillIndicators() {
+      try {
+        const response = await fetch("/get-latest-indicators");
+        const data = await response.json();
+        if (data.error) {
+          alert("Error fetching indicators: " + data.error);
+          return;
+        }
+        for (let key in data) {
+          const input = document.getElementById(key);
+          if (input) input.value = data[key];
+        }
+      } catch (error) {
+        alert("Failed to fetch indicators.");
+        console.error(error);
+      }
+    }
+
+    async function submitForm() {
+      const fields = [
+        "BTC_Boll_lower", "BTC_Boll_upper", "BTC_Change",
+        "BTC_MACD", "BTC_MACD_signal", "BTC_RSI",
+        "BTC_EMA_20", "BTC_Volume"
+      ];
+      const inputData = {};
+      for (let field of fields) {
+        inputData[field] = parseFloat(document.getElementById(field).value);
+      }
+
+      const response = await fetch("/recommend", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(inputData),
+      });
+
+      const result = await response.json();
+      document.getElementById("result").innerText = JSON.stringify(result, null, 2);
+    }
+  </script>
+</head>
+<body>
+  <h1>📊 BTC Investment Predictor</h1>
+
+  <button onclick="autoFillIndicators()">⚡ Auto-Fill Live Indicators</button>
+  <br><br>
+
+  <form onsubmit="event.preventDefault(); submitForm();">
+    <label for="BTC_Boll_lower">Bollinger Lower:</label>
+    <input type="number" step="any" id="BTC_Boll_lower" required />
+
+    <label for="BTC_Boll_upper">Bollinger Upper:</label>
+    <input type="number" step="any" id="BTC_Boll_upper" required />
+
+    <label for="BTC_Change">% Change:</label>
+    <input type="number" step="any" id="BTC_Change" required />
+
+    <label for="BTC_MACD">MACD:</label>
+    <input type="number" step="any" id="BTC_MACD" required />
+
+    <label for="BTC_MACD_signal">MACD Signal:</label>
+    <input type="number" step="any" id="BTC_MACD_signal" required />
+
+    <label for="BTC_RSI">RSI:</label>
+    <input type="number" step="any" id="BTC_RSI" required />
+
+    <label for="BTC_EMA_20">EMA 20:</label>
+    <input type="number" step="any" id="BTC_EMA_20" required />
+
+    <label for="BTC_Volume">Volume:</label>
+    <input type="number" step="any" id="BTC_Volume" required />
+
+    <br><br>
+    <button type="submit">🔮 Predict</button>
+  </form>
+
+  <pre id="result"></pre>
+</body>
+</html>

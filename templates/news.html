@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}News & Research{% endblock %}
+
+{% block content %}
+<h2>📰 Market News & Research</h2>
+
+<p>📢 Stay updated with the latest in <strong>Crypto</strong> 💰 and <strong>Stock Markets</strong> 📈 — powered by trusted sources like <b>CryptoPanic</b> and real-time research summaries.</p>
+
+<!-- === CRYPTO NEWS === -->
+<h3>💸 Crypto Market News (Live from CryptoPanic)</h3>
+<div class="news-widget">
+  <iframe src="https://cryptopanic.com/widgets/news/?bg_color=ffffff&font_family=sans&font_size=13&header_bg_color=f1f1f1&header_text_color=000000&link_color=0000ff&news_feed=trending&title=Crypto%20News" 
+          width="100%" height="350" frameborder="0"></iframe>
+</div>
+
+<!-- === GLOBAL STOCK HEADLINES === -->
+<h3>📈 Global Stock Headlines (2025)</h3>
+<ul class="news-list">
+  <li>
+    <strong>🧠 <u><i>Apple Unveils AI Chip</i></u></strong> – <i>Boosts 2025 Forecast</i><br>
+    <small>Bloomberg – July 17, 2025</small><br>
+    🔗 <a href="https://www.bloomberg.com/news/articles/2025-07-17/apple-unveils-ai-chip-boosts-guidance" target="_blank">Read Full Article</a>
+  </li>
+  <li>
+    <strong>🤖 <u><i>Microsoft Acquires AI Startup</i></u></strong> – <i>$3.4B Deal Enhances Copilot</i><br>
+    <small>Forbes – July 16, 2025</small><br>
+    🔗 <a href="https://www.forbes.com/sites/2025/07/16/microsoft-ai-copilot-acquisition" target="_blank">Read Full Article</a>
+  </li>
+  <li>
+    <strong>📊 <u><i>Dow Jones Hits Record High</i></u></strong> – <i>Tech Stocks Lead Rally</i><br>
+    <small>Reuters – July 15, 2025</small><br>
+    🔗 <a href="https://www.reuters.com/markets/2025/07/15/dow-jones-record-tech-stocks" target="_blank">Read Full Article</a>
+  </li>
+</ul>
+
+<!-- === INDIAN MARKET UPDATE === -->
+<h3>🇮🇳 Indian Stock Market – <i>July 18, 2025</i></h3>
+<ul class="news-list">
+  <li>
+    <strong>📉 Market Sentiment:</strong><br>
+    The market is <i>trending lower</i> due to <u>weak Q1 earnings</u> from Axis Bank and a downgrade from Citi to "neutral". Global factors like rising oil prices and US Fed uncertainty are worsening sentiment.
+  </li>
+  <li>
+    <strong>📊 BSE SENSEX:</strong><br>
+    <b>81,740.27</b> (↓ 0.63%) as of 2:15 PM IST.<br>
+    <small>52-wk High: 85,978.25 | 52-wk Low: 71,425.01</small>
+  </li>
+  <li>
+    <strong>🏦 Sector Trends:</strong><br>
+    Financials lead the decline, especially <i>private banks</i>. Metals & media show mild strength. Defence stocks see 3rd day of profit booking.
+  </li>
+  <li>
+    <strong>📌 Stock-Specific:</strong>
+    <ul>
+      <li><b>Wipro:</b> Q1 beat expectations but long-term recovery expected.</li>
+      <li><b>Clean Science:</b> Fell 8% after weak results & stake sale news.</li>
+      <li><b>Polycab:</b> Rose 3% after strong Q1.</li>
+      <li><b>Adani:</b> Fully exited Wilmar Agri business.</li>
+      <li><b>Reliance:</b> Q1 results awaited today.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>📅 Upcoming IPOs:</strong>
+    <ul>
+      <li><b>July 23:</b> <i>Monika Alcobev, Anthem Biosciences IPO listings</i></li>
+      <li><b>July 23:</b> <i>IndiQube Spaces, GNG Electronics IPOs open</i></li>
+    </ul>
+  </li>
+</ul>
+
+<style>
+  .news-widget {
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+
+  .news-list {
+    padding-left: 20px;
+    list-style-type: '📰 ';
+    font-size: 16px;
+  }
+
+  .news-list li {
+    margin-bottom: 25px;
+    line-height: 1.6;
+  }
+
+  .news-list a {
+    color: #007bff;
+    text-decoration: underline;
+  }
+
+  .news-list small {
+    color: #777;
+    display: block;
+    margin: 5px 0;
+  }
+
+  h2, h3 {
+    margin-top: 30px;
+  }
+</style>
+{% endblock %}

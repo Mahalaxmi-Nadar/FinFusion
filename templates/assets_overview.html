@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Overview - Assets{% endblock %}
+
+{% block content %}
+<h2>📊 Asset Overview</h2>
+
+<!-- Summary Section -->
+<div class="summary-cards">
+  <div class="card">💼 <strong>Total Portfolio Value:</strong> ₹1,25,000 / $1,500</div>
+  <div class="card">📈 <strong>Net PnL:</strong> +₹5,200 / +$62.15</div>
+  <div class="card">🪙 <strong>Total Holdings:</strong> 3 Crypto, 2 Stocks</div>
+  <div class="card">🏦 <strong>Funding Wallet:</strong> ₹3,000</div>
+</div>
+
+<!-- Pie Chart -->
+<div class="chart-container">
+  <canvas id="allocChart" width="300" height="300"></canvas>
+</div>
+<img src="https://cdn.dribbble.com/userupload/10642930/file/original-2014702311e070a448ce195996cac8fd.jpg" width="300" style="opacity: 0.8; border-radius: 10px; margin-top: 20px;">
+
+<!-- Fiat Balances -->
+<h3>💳 Fiat Wallets</h3>
+<ul>
+  <li>🇮🇳 INR Wallet: ₹5,000</li>
+  <li>🇺🇸 USD Wallet: $200</li>
+</ul>
+
+<!-- Recent Transactions Table -->
+<h3>📜 Recent Transactions</h3>
+<table class="txn-table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Asset</th>
+      <th>Amount</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Deposit</td><td>BTC</td><td>₹25,000</td><td>2025-07-18</td></tr>
+    <tr><td>Trade</td><td>ETH</td><td>₹15,000</td><td>2025-07-17</td></tr>
+    <tr><td>Withdraw</td><td>INR</td><td>₹5,000</td><td>2025-07-16</td></tr>
+  </tbody>
+</table>
+
+<!-- Chart.js Pie Chart Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById("allocChart").getContext("2d");
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Crypto', 'Stocks', 'Cash'],
+      datasets: [{
+        data: [60, 30, 10],
+        backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56']
+      }]
+    },
+    options: {
+      plugins: {
+        legend: { position: 'bottom' },
+        title: { display: true, text: 'Asset Allocation' }
+      }
+    }
+  });
+</script>
+
+<!-- Styling -->
+<style>
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+.card {
+  background: #1e1e1e;
+  color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  font-size: 1rem;
+}
+.chart-container {
+  max-width: 400px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+.txn-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #fff;
+}
+.txn-table th, .txn-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+.txn-table th {
+  background: #f5f5f5;
+  font-weight: bold;
+}
+</style>
+{% endblock %}

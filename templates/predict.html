@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction</title>
+</head>
+<body>
+    <h1>Investment Prediction</h1>
+    <form method="post">
+        <label>MACD:</label><input name="macd" type="number" step="any"><br>
+        <label>RSI:</label><input name="rsi" type="number" step="any"><br>
+        <label>BBL:</label><input name="bbl" type="number" step="any"><br>
+        <label>BBU:</label><input name="bbu" type="number" step="any"><br>
+        <label>% Change:</label><input name="pct_change" type="number" step="any"><br>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+    <h2>Prediction Result:</h2>
+    <ul>
+        <li>Recommendation: {{ result.recommendation }}</li>
+        <li>Investment Term: {{ result.term }}</li>
+        <li>Risk Level: {{ result.risk }}</li>
+    </ul>
+    {% endif %}
+</body>
+</html>

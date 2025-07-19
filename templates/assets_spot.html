@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Spot Wallet{% endblock %}
+
+{% block content %}
+<h2>💹 Spot Wallet</h2>
+
+<table class="asset-table">
+  <thead>
+    <tr>
+      <th>Asset</th>
+      <th>Amount</th>
+      <th>Value (INR)</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>₿ Bitcoin</td>
+      <td>0.12</td>
+      <td>₹4,20,000</td>
+      <td><button>Deposit</button> <button>Withdraw</button></td>
+    </tr>
+    <tr>
+      <td>Ξ Ethereum</td>
+      <td>2.5</td>
+      <td>₹3,10,000</td>
+      <td><button>Deposit</button> <button>Withdraw</button></td>
+    </tr>
+    <tr>
+      <td>₹ INR</td>
+      <td>15,000</td>
+      <td>₹15,000</td>
+      <td><button>Deposit</button> <button>Withdraw</button></td>
+    </tr>
+  </tbody>
+</table>
+<img src="https://cdn.dribbble.com/userupload/11109535/file/original-ed9ad98c7932572be4ca20c8565767a6.png" width="260" style="opacity: 0.85; border-radius: 10px; float: right; margin-left: 20px;">
+
+<style>
+  .asset-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  .asset-table th, .asset-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .asset-table thead {
+    background-color: #f7f7f7;
+  }
+
+  .asset-table th {
+    font-weight: bold;
+  }
+
+  button {
+    padding: 6px 12px;
+    margin: 2px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #1976D2;
+  }
+</style>
+{% endblock %}

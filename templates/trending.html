@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Trending Assets{% endblock %}
+
+{% block content %}
+<h2>🔥 Most Traded & Trending Assets</h2>
+
+<p>Discover what's hot in the <strong>Crypto</strong> 💸 and <strong>Stock</strong> 📈 markets today. Updated July 18, 2025.</p>
+
+<!-- === Trending Cryptos (Live) === -->
+<h3>💰 Top 5 Trending Cryptos (Live)</h3>
+<div class="trending-list">
+  <ul>
+    <li><strong>1. Bitcoin (BTC)</strong> – $64,230 <span style="color:green">+3.12%</span> 🔗 <a href="https://www.coingecko.com/en/coins/bitcoin" target="_blank">Details</a></li>
+    <li><strong>2. Ethereum (ETH)</strong> – $3,270 <span style="color:green">+2.54%</span> 🔗 <a href="https://www.coingecko.com/en/coins/ethereum" target="_blank">Details</a></li>
+    <li><strong>3. Solana (SOL)</strong> – $139.70 <span style="color:red">−0.45%</span> 🔗 <a href="https://www.coingecko.com/en/coins/solana" target="_blank">Details</a></li>
+    <li><strong>4. Dogecoin (DOGE)</strong> – $0.169 <span style="color:green">+1.80%</span> 🔗 <a href="https://www.coingecko.com/en/coins/dogecoin" target="_blank">Details</a></li>
+    <li><strong>5. XRP</strong> – $0.597 <span style="color:red">−1.02%</span> 🔗 <a href="https://www.coingecko.com/en/coins/ripple" target="_blank">Details</a></li>
+  </ul>
+</div>
+
+<!-- === Trending Stocks (Static / Manual for now) === -->
+<h3>📈 Top 5 Trending Global Stocks</h3>
+<div class="trending-list">
+  <ul>
+    <li><strong>1. Apple Inc. (AAPL)</strong> – $203.18 <span style="color:green">+1.12%</span> 🔗 <a href="https://www.google.com/finance/quote/AAPL:NASDAQ" target="_blank">Details</a></li>
+    <li><strong>2. Tesla (TSLA)</strong> – $275.45 <span style="color:red">−0.92%</span> 🔗 <a href="https://www.google.com/finance/quote/TSLA:NASDAQ" target="_blank">Details</a></li>
+    <li><strong>3. Nvidia (NVDA)</strong> – $132.67 <span style="color:green">+4.31%</span> 🔗 <a href="https://www.google.com/finance/quote/NVDA:NASDAQ" target="_blank">Details</a></li>
+    <li><strong>4. Reliance (RELIANCE.NS)</strong> – ₹2,935 <span style="color:green">+0.55%</span> 🔗 <a href="https://www.google.com/finance/quote/RELIANCE:NSE" target="_blank">Details</a></li>
+    <li><strong>5. Tata Consultancy (TCS.NS)</strong> – ₹3,712 <span style="color:red">−0.22%</span> 🔗 <a href="https://www.google.com/finance/quote/TCS:NSE" target="_blank">Details</a></li>
+  </ul>
+</div>
+
+<style>
+  .trending-list ul {
+    list-style: '📊 ';
+    font-size: 16px;
+    padding-left: 20px;
+  }
+
+  .trending-list li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+
+  .trending-list a {
+    text-decoration: underline;
+    color: #007bff;
+  }
+</style>
+{% endblock %}

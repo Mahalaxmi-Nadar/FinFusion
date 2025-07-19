@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Live Charts{% endblock %}
+
+{% block content %}
+<h2>📈 Live Crypto & Stock Market Charts</h2>
+
+<p>Track real-time prices for major cryptocurrencies and stock indices.</p>
+
+<!-- 🔍 Search Form -->
+<form id="searchForm" onsubmit="showSearchChart(event)">
+  <input type="text" id="symbolInput" placeholder="Enter symbol (e.g., BTCUSDT, AAPL, ETHUSDT, NIFTY)">
+  <button type="submit">Show Chart</button>
+</form>
+
+<!-- Search Result Display -->
+<div id="searchResult" class="tv-container"></div>
+
+<hr style="margin: 40px 0;">
+
+<!-- Default Charts -->
+
+<!-- Bitcoin Chart -->
+<h3>Bitcoin (BTC-USD)</h3>
+<div class="tv-container">
+  <iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?symbol=BINANCE:BTCUSDT&locale=en" 
+          width="100%" height="220" frameborder="0"></iframe>
+</div>
+
+<!-- Ethereum Chart -->
+<h3>Ethereum (ETH-USD)</h3>
+<div class="tv-container">
+  <iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?symbol=BINANCE:ETHUSDT&locale=en" 
+          width="100%" height="220" frameborder="0"></iframe>
+</div>
+
+<!-- Apple (AAPL) Chart -->
+<h3>Apple Inc. (AAPL)</h3>
+<div class="tv-container">
+  <iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?symbol=NASDAQ:AAPL&locale=en" 
+          width="100%" height="220" frameborder="0"></iframe>
+</div>
+
+<!-- NASDAQ Chart -->
+<h3>NASDAQ (NDX)</h3>
+<div class="tv-container">
+  <iframe src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?symbol=NASDAQ:NDX&locale=en" 
+          width="100%" height="220" frameborder="0"></iframe>
+</div>
+
+<style>
+  .tv-container {
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  #symbolInput {
+    padding: 10px;
+    width: 280px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    margin-right: 10px;
+  }
+
+  #searchForm {
+    margin-bottom: 30px;
+  }
+</style>
+
+<script>
+  function showSearchChart(event) {
+    event.preventDefault();
+    const symbol = document.getElementById("symbolInput").value.trim().toUpperCase();
+    if (!symbol) return;
+
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://s.tradingview.com/embed-widget/mini-symbol-overview/?symbol=${symbol}&locale=en`;
+    iframe.width = "100%";
+    iframe.height = "220";
+    iframe.frameBorder = "0";
+
+    const resultDiv = document.getElementById("searchResult");
+    resultDiv.innerHTML = "";  // Clear previous
+    resultDiv.appendChild(iframe);
+  }
+</script>
+{% endblock %}
