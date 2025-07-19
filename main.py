@@ -168,6 +168,10 @@ def asset_overview(request: Request, db: Session = Depends(get_db)):
         "inr_wallet": inr_wallet,
         "usd_wallet": usd_wallet
     })
+@app.get("/", response_class=HTMLResponse)
+async def home(request: Request):
+    return templates.TemplateResponse("home.html", {"request": request})
+
 
 @app.get("/assets/spot", response_class=HTMLResponse)
 def asset_spot(request: Request):
@@ -191,4 +195,5 @@ def trending_api():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=10000, reload=True)
+
